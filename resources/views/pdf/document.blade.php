@@ -2,22 +2,22 @@
 <html>
 
 <head>
-    <title>{{ $title }}</title>
+    <title>Fiche de Notation</title>
 </head>
 
 <style>
     .en-tete{
-        font-size: 15px;
+        font-size: 12px;
         font-weight: bold
     }
     .text-body{
-        font-size: 15px
+        font-size: 11px
     }
 </style>
 
 <body>
 
-    <div style="margin-top:5rem">
+    <div style="margin-top:10rem">
         <img src="{{ asset('storage/pictures/8Ipey07HhaWh1vTqjbmuNABC7y82Wi4yBZ9b1qCp.jpg') }}" alt="En-tête"
             style="text-align: center" />
     </div>
@@ -27,10 +27,10 @@
         <table style="width: 100%">
             <tbody>
                 <tr>
-                    <td class="en-tete">Date :</td>
-                    <td class="en-tete">Heure :</td>
-                    <td class="en-tete">Salle :</td>
-                    <td class="en-tete">Matricule :</td>
+                    <td class="en-tete">Date : {{$etudiant->date}} </td>
+                    <td class="en-tete">Heure : {{$etudiant->heure}}</td>
+                    <td class="en-tete">Salle : {{$etudiant->salle}}</td>
+                    <td class="en-tete">Matricule : {{$etudiant->matricule_etud}}</td>
                 </tr>
             </tbody>
         </table>
@@ -41,7 +41,7 @@
         <table style="width: 100%">
             <tbody>
                 <tr>
-                    <td class="en-tete">Nom(s) et prénom(s) de l'étudiant : </td>
+                    <td class="en-tete">Nom(s) et prénom(s) de l'étudiant : {{$etudiant->nom_prenom}}</td>
                 </tr>
             </tbody>
         </table>
@@ -50,18 +50,24 @@
     {{-- Département et parcours --}}
 
     <div>
+        <table style="width: 70%">
+            <tbody>
+                <tr>
+                    <td class="en-tete text-nowrap">Département : </td>
+                    <td class="en-tete text-nowrap" style="text-align: left">Parcours : </td>
+                </tr>
+                <tr>
+                    <td class="en-tete text-nowrap">Lieu de stage : {{$etudiant->lieu_stage}}</td>
+                    <td class="en-tete text-nowrap">Entreprise : {{$etudiant->entreprise}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
         <table style="width: 100%">
             <tbody>
                 <tr>
-                    <td class="en-tete">Département : </td>
-                    <td class="en-tete">Parcours : </td>
-                </tr>
-                <tr>
-                    <td class="en-tete">Lieu de stage : </td>
-                    <td class="en-tete">Entreprise : </td>
-                </tr>
-                <tr>
-                    <td class="en-tete">Sujet : </td>
+                    <td class="en-tete">Sujet : {{$etudiant->theme}}</td>
                 </tr>
             </tbody>
         </table>
@@ -135,7 +141,7 @@
         </div>
     </div>
     <div>
-        <table border="1" style="border-collapse: collapse">
+        <table border="1" style="border-collapse: collapse; width:100%">
             <thead>
                 <tr>
                     <th></th>
@@ -195,9 +201,9 @@
             <tbody>
                 <tr>
                     <td style="font-size: 0.7rem">NOM</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="text-body" style="text-align: center">{{$etudiant->president}}</td>
+                    <td class="text-body" style="text-align: center">{{$etudiant->examinateur}}</td>
+                    <td class="text-body" style="text-align: center">{{$etudiant->rapporteur}}</td>
                     <td></td>
                 </tr>
                 <tr>

@@ -10,13 +10,15 @@ class Jury extends Model {
     use HasFactory;
 
     protected $fillable = [
+        "num_jury",
         "president",
         "examinateur",
         "rapporteur",
         "encadreur",
         "entreprise",
         "date",
-        "heure"
+        "heure",
+        "salle"
     ];
 
     // un jury peu avoir plusieurs étudiants

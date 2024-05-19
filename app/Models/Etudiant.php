@@ -17,7 +17,6 @@ class Etudiant extends Model {
         "lieu_stage",
         "entreprise",
         "jury_id",
-        "departement_id"
     ];
 
     // un étudiant appartient à un département

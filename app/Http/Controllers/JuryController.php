@@ -6,6 +6,7 @@ use App\Imports\JuryImport;
 use App\Models\Jury;
 use App\Http\Requests\StoreJuryRequest;
 use App\Http\Requests\UpdateJuryRequest;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -67,9 +68,14 @@ class JuryController extends Controller
         //
     }
 
-    public function fileImport(){
-        return view("", compact(""));
+    public function importerJury(){
+        $etudiants = Etudiant::all();
+        return view("Jurys.importJury", compact("etudiants"));
     }
+
+    // public function fileImport(){
+    //     return view("", compact(""));
+    // }
 
     public function Import(Request $request){
         Excel::import(new JuryImport, $request->file("jury_file"));

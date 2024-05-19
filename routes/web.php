@@ -65,14 +65,16 @@ Route::post('file-export', [InterventionController::class, "fileExport"])->name(
 
 Route::post('/file-import', [JuryController::class, "fileImport"])->name("file.import");
 
-Route::post('/import', [JuryController::class, "Import"])->name("file.import");
+Route::post('import', [JuryController::class, "Import"])->name("file.import");
 // Route::get('/intervention_prevu/departement', [InterventionController::class, "intervention_prevu"]);
 //
 
 // Route::get('/intervention_effect/departement', [InterventionController::class, "intervention_effectif"]);
 
+// interface d'importation des jurys
+Route::get('importer/jury', [JuryController::class, 'importerJury'])->name("importer.jury");
 
-Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
+Route::post('/generate-pdf/{matricule_etud}', [PDFController::class, 'generatePDF'])->name("generate.pdf");
 
 Route::get("/fiche-notation", function(){
     return view("FicheAnnotation.FicheAnnotation");

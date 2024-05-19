@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('juries', function (Blueprint $table) {
             $table->id();
+            $table->string("num_jury")->nullable(false);
             $table->string("president")->nullable(false);
             $table->string("examinateur")->nullable(false);
             $table->string("rapporteur")->nullable(false);
             $table->string("encadreur")->nullable();
             $table->string("entreprise")->nullable();
-            $table->date("date")->nullable(false);
-            $table->time("heure")->nullable(false);
+            $table->string("date")->nullable(false);
+            $table->string("heure")->nullable(false);
+            $table->string("salle")->nullable(false);
             $table->timestamps();
         });
     }

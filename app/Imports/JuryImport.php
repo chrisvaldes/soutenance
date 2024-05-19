@@ -9,40 +9,46 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class JuryImport implements ToCollection, WithHeadingRow, WithValidation {
+class JuryImport implements ToCollection, WithHeadingRow
+{
     /**
-    * @param Collection $collection
-    */
-
-    public function collection( Collection $rows ) {
-        foreach ( $rows as $row ) {
-            $jury = [
-                'president' => $row->President,
-                'examinateur' => $row->Examinateur,
-                'rapporteur' => $row->Rapporteur,
-                'encadreur'=> $row->Encadreur,
-                'entreprise' => $row->Entreprise,
-                'date' => $row->Date,
-                'heure' => $row->Heure,
-                'salle' => $row->salle
-            ];
-
+     * @param Collection $collection
+     */
+    public function collection(Collection $rows)
+    {
+        foreach ($rows as $row) {
             $etudiant = [
-                'nom_etud' => $row->Noms_Prenoms,
-                'matricule' => $row->Matricule,
-                'theme' => $row->Theme
+                "jury_id" => $row["n"],
+                'nom_prenom' => $row["nometudiant"],
+                'matricule_etud' => $row["matricule"],
+                'theme' => $row["theme"],
             ];
-        }
 
-        Jury::create($jury);
-        Etudiant::create( $etudiant );
+            $jury = [
+                "num_jury" => $row["n"],
+                'date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row["date"])->format('Y-m-d'),
+                'heure' => $row["heure"],
+                'salle' => $row["salle"],
+                'president' => $row["president"],
+                'examinateur' => $row["examinateur"],
+                'rapporteur' => $row["rapporteur"],
+                'encadreur' => $row["invite"],
+                'entreprise' => $row["invite"],
+
+            ];
+
+
+            Jury::create($jury);
+            Etudiant::create($etudiant);
+        }
     }
 
-    public function rules(): array  {
+    public function rules(): array
+    {
         return [
             'president' => "required",
             'examinateur' => "required",
-            'rapporteur' => "required", 
+            'rapporteur' => "required",
             'date' => "required",
             'heure' => "required",
             'salle' => "required",

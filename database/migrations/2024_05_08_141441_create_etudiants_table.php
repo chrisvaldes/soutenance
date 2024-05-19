@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("lieu_stage")->nullable();
             $table->string("entreprise")->nullable();
             $table->foreignIdFor(Jury::class);
-            $table->foreignIdFor(Departement::class);
+            // $table->foreignIdFor(Departement::class);
             $table->timestamps();
         });
     }
