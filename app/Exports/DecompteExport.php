@@ -28,19 +28,11 @@ class DecompteExport implements FromCollection, WithHeadings
     public function headings(): array{
         $departement = request()->departement;
         return [
-            [
-                "",
-                "",
-                "GC",
-                "GC",
-                "GC",
-            ],
-            [
             "Grade",
-            "Noms/prenoms",
+            "Noms/Prenoms",
             "P",
             "R",
             "E"
-        ] ];
+        ];
     }
 }

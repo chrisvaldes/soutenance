@@ -3,9 +3,11 @@
 @section('title', 'Mise à jour Intervention')
 
 @section('content')
-
+    @include('navbar')
     <div class="row">
-        <div class="col"></div>
+        <div class="col-4">
+            @include('sidebar')
+        </div>
         <div class="col-6 p-5">
             <form action="{{route("update.intervention", $interventionRequest->id)}}" method="POST">
                 @csrf
@@ -46,8 +48,8 @@
                                 value="{{ $interventionRequest->prevu_ex }}">
                         </div>
                         <div class="d-flex align-item-center justify-content-between">
-                            <div class="w-100 m-2"><a href="{{route("update.decompte_prevu")}}" class="btn btn-primary w-100 mt-4">Annuler</a></div>
-                            <div class="w-100 m-2"><button type="submit" class="btn btn-primary w-100 mt-4 mr-2">Modifier</button></div>
+                            <div class="w-100 m-2"><a href="{{route("creation.decompte_prevu")}}" class="btn btn-warning w-100 mt-4">Annuler</a></div>
+                            <div class="w-100 m-2"><button type="submit" class="btn btn-success w-100 mt-4 mr-2">Modifier</button></div>
                         </div>
                     </div>
                 </div>

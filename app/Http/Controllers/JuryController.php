@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\JuryImport;
 use App\Models\Jury;
 use App\Http\Requests\StoreJuryRequest;
 use App\Http\Requests\UpdateJuryRequest;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JuryController extends Controller
 {
@@ -62,5 +65,14 @@ class JuryController extends Controller
     public function destroy(Jury $jury)
     {
         //
+    }
+
+    public function fileImport(){
+        return view("", compact(""));
+    }
+
+    public function Import(Request $request){
+        Excel::import(new JuryImport, $request->file("jury_file"));
+        return back();
     }
 }

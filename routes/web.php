@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AcceuilController;
 use App\Http\Controllers\InterventionController;
+use App\Http\Controllers\JuryController;
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +20,17 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get("/", [AcceuilController::class, "index"])->name("accueil");
+
 //tableau de création des interventions
 Route::get('creation/decompte_prevu', [InterventionController::class, "interv_prevu"])->name("creation.decompte_prevu");
 
 // affiche du tableau pour mise à jour des interventions en fin de soiré
-Route::get('decompte/journalier', [InterventionController::class, "interv_effect"]);
+Route::get('decompte/journalier', [InterventionController::class, "interv_effect"])->name("decompte.journalier");
+
+// la modification d'un décompte doit se faire par département.
+Route::get('choix/departement', [InterventionController::class, "choixDepartement"])->name("choix.departement");
+Route::post('choix/departementTraitement', [InterventionController::class, "update_decompte_prevue"])->name("choix.departementTraitement");
 
 // affichage de la liste des interventions prévue
 Route::get('update/decompte_prevu', [InterventionController::class, "update_decompte_prevue"])->name("update.decompte_prevu");
@@ -42,21 +51,32 @@ Route::post('update/decompte_effectif/{decompteJour}', [InterventionController::
 // Route::post('update/decompte_prevu/{intervention}', [InterventionController::class, "updateDecomptePrevu"])->name("udateDecompte.prevu");
 
 
-Route::get('departement/bilan_intervention', [InterventionController::class, "bilan"])->name("departement.bilan_intervention");
+Route::get('departement/choix_bilan_interventionDepartement', [InterventionController::class, "choix_bilan_interventionDepartement"])->name("choix.departement.bilan");
+
+// Route::get('departement/bilan_intervention', [InterventionController::class, "bilan"])->name("departement.bilan_intervention");
+
+// bilan des interventions par département
+Route::post('departement/bilan_interventionTraitement', [InterventionController::class, "bilanInterventionTraitement"])->name("departement.bilan_intervention");
 
 Route::post('departement/bilan', [InterventionController::class, "bilanTraitement"])->name("departement.bilan");
 
 // exportation du fichier en csv
 Route::post('file-export', [InterventionController::class, "fileExport"])->name("file.export");
 
+Route::post('/file-import', [JuryController::class, "fileImport"])->name("file.import");
+
+Route::post('/import', [JuryController::class, "Import"])->name("file.import");
 // Route::get('/intervention_prevu/departement', [InterventionController::class, "intervention_prevu"]);
 //
 
 // Route::get('/intervention_effect/departement', [InterventionController::class, "intervention_effectif"]);
 
 
+Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
 
-
+Route::get("/fiche-notation", function(){
+    return view("FicheAnnotation.FicheAnnotation");
+});
 
 // select nom_prenom_ens, departement, sum(prevu_pr), sum(prevu_ra), sum(prevu_ex), sum(effec_pr), sum(effec_ra), sum(effec_ex) from interventions WHERE departement = "genie logiciel" GROUP BY nom_prenom_ens;
 // select nom_prenom_ens, departement, sum(effec_pr), sum(effec_ra), sum(effec_ex) from interventions WHERE departement = "genie logiciel"  GROUP BY nom_prenom_ens ORDER by nom_prenom_ens;

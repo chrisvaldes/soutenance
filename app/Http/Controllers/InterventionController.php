@@ -33,15 +33,7 @@ class InterventionController extends Controller {
         return view( 'Interventions.departement.form_inter_effect', compact( 'decompteJours' ) );
     }
 
-    public function bilan() {
-        $interventions = Intervention::all();
-        $departements = Departement::all();
-        return view( 'Interventions.departement.bilan_intervention', compact( 'interventions', 'departements' ) );
-    }
-
-    //on regroupe les enseignants en fonction des départements dans lequel ils ont intervenu et on fait le bilan
-    public function bilanTraitement( Request $request ) {
-
+    public function bilanInterventionTraitement(Request $request) {
         $departement = $request->departement;
         $departements = Departement::all();
         $interventions = Intervention::selectRaw( 'GROUP_CONCAT(grade) as grade, nom_prenom_ens' )
@@ -54,6 +46,22 @@ class InterventionController extends Controller {
 
         return view( 'Interventions.departement.bilan_par_departement', compact( 'interventions', 'departements', 'departement' ) );
     }
+
+    //on regroupe les enseignants en fonction des départements dans lequel ils ont intervenu et on fait le bilan
+    // public function bilanTraitement( Request $request ) {
+
+    //     $departement = $request->departement;
+    //     $departements = Departement::all();
+    //     $interventions = Intervention::selectRaw( 'GROUP_CONCAT(grade) as grade, nom_prenom_ens' )
+    //     ->selectRaw( 'SUM(effec_pr) as sum_effec_pr, SUM(effec_ra) as sum_effec_ra, SUM(effec_ex) as sum_effec_ex' )
+    //     ->where( 'departement', $request->departement )
+    //     ->groupBy( 'nom_prenom_ens' )
+    //     ->get();
+
+    //     // dd( $interventions );
+
+    //     return view( 'Interventions.departement.bilan_par_departement', compact( 'interventions', 'departements', 'departement' ) );
+    // }
 
     // permet de modifier les interventions existant prévu
 
@@ -168,8 +176,9 @@ class InterventionController extends Controller {
 
     }
 
-    public function update_decompte_prevue() {
-        $intervention_prevu = Intervention::all()->sortBy( 'date' );
+    public function update_decompte_prevue(Request $request) {
+
+        $intervention_prevu = Intervention::where("departement", $request->departement)->get();
         return view( 'Interventions.Departement.updateIntervention', compact( 'intervention_prevu' ) );
     }
 
@@ -236,5 +245,13 @@ class InterventionController extends Controller {
         return Excel::download(new DecompteExport, request()->departement.'.xlsx');
     }
 
+    public function choixDepartement(){
+        $departements = Departement::all();
+        return view("Departement.ChoixDepartement", compact("departements"));
+    }
 
+    public function choix_bilan_interventionDepartement(){
+        $departements = Departement::all();
+        return view( "Departement.Choix_Bilan_Intervention", compact("departements"));
+    }
 }

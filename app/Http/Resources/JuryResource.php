@@ -14,14 +14,16 @@ class JuryResource extends JsonResource {
 
     public function toArray( Request $request ): array {
         return [
-            'id',
-            'president',
-            'examinateur',
-            'rapporteur',
-            'encadreur',
-            'entreprise',
-            'date',
-            'heure'
+            'id' => $this->id,
+            'president' => $this->president,
+            'examinateur' => $this->examinateur,
+            'rapporteur' => $this->rapporteur,
+            'encadreur' => $this->encadreur,
+            'entreprise' => $this->entreprise,
+            'date' => $this->date,
+            'heure' => $this->heure,
+            'etudiant' => $this->etudiants,
+            'enseignant'=> $this->enseignants
         ];
     }
 }

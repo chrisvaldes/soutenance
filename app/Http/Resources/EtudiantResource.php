@@ -14,13 +14,13 @@ class EtudiantResource extends JsonResource {
 
     public function toArray( Request $request ): array {
         return [
-            'matricule_etud',
-            'nom_prenom',
-            'theme',
-            'lieu_stage',
-            'entreprise',
-            'jury_id',
-            'departement_id'
+            'matricule_etud'=> $this->matricule_etud,
+            'nom_prenom' => $this->nom_prenom,
+            'theme' => $this->theme,
+            'lieu_stage' => $this->lieu_stage,
+            'entreprise' => $this->entreprise,
+            'jury_id' => $this->jury_id,
+            'departement_id' => $this->departement_id
         ];
     }
 }

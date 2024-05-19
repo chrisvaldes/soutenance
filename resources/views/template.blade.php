@@ -21,22 +21,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
-     
+
     <title>@yield('title')</title>
-    {{-- <style>
-        body{
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url("/images/campus.jpg");
+
+    <style>
+        .side_bar {
+            padding: 2rem 1rem 0 1rem;
         }
-    </style> --}}
+
+        .row {
+            padding-top: 5.5rem
+        }
+
+        .hauteur{
+            max-height: 40rem;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body>
-    {{-- <img src="../../images/campus.jpg" alt="picture"> --}}
+
     <div class="content min-vh-100">
         @yield('content')
     </div>
+
 </body>
 
 </html>

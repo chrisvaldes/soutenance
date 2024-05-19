@@ -38,13 +38,11 @@ class JuryImport implements ToCollection, WithHeadingRow, WithValidation {
         Etudiant::create( $etudiant );
     }
 
-    public function rules(): array {
+    public function rules(): array  {
         return [
             'president' => "required",
             'examinateur' => "required",
-            'rapporteur' => "required",
-            'encadreur'=> "required",
-            'entreprise' => "required",
+            'rapporteur' => "required", 
             'date' => "required",
             'heure' => "required",
             'salle' => "required",
