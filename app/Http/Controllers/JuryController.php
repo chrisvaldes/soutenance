@@ -81,4 +81,8 @@ class JuryController extends Controller
         Excel::import(new JuryImport, $request->file("jury_file"));
         return back();
     }
+
+    public function creer_jury(){
+        return view("Jurys.creejury");
+    }
 }

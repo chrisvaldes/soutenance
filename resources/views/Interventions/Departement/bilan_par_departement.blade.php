@@ -12,19 +12,24 @@
             <h4 class="text-center">ETAT DE SERVICES FAITS DES PRESTATIONS DES SOUENANCES DES MEMOIRES DE FIN D'ETUDE
                 INGENIEUR</h4>
 
-            <h4 class="text-center">DEPARTEMENT : {{ $departement }}</h4>
+            <h4 class="text-center">DEPARTEMENT : {{ $departement->nom_depart }}</h4>
 
             <table class="table">
                 <thead>
                     <tr>
                         <th colspan="1" class="text-center">
-                            <form action="{{ route('file.export') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <a class="btn btn-success me-3" href="{{ route('accueil') }}">Retour</a>
-                                <input type="hidden" name="departement" id="" value="{{ $departement }}">
-                                <button class="btn btn-success me-3" type="submit">Exporter(csv)</button>
-                                {{-- <button class="btn btn-info float-end" type="submit">Exporter</button> --}}
-                            </form>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <form action="{{ route('file.export') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <a class="btn btn-success me-3" href="{{ route("choix.departement.bilan") }}">Retour</a>
+                                    <input type="hidden" name="departement" id="" value="{{ $departement->nom_depart }}">
+                                    <button class="btn btn-success me-3" type="submit">Decompte {{$departement->id_depart}} (.xlsx)</button>
+                                </form>
+                                <form action="{{ route("BilanTotal.export")}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <button class="btn btn-success me-3" type="submit">Etat Service (.xlsx)</button>
+                                </form>
+                            </div>
                         </th>
                         <th colspan="1" class="text-center"></th>
                         <th colspan="3" class="text-center">Bilan</th>

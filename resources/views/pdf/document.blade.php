@@ -6,31 +6,114 @@
 </head>
 
 <style>
-    .en-tete{
-        font-size: 12px;
-        font-weight: bold
+    .en-tete {
+        font-size: 10px;
     }
-    .text-body{
+
+    .text-body {
         font-size: 11px
     }
+
+    .entete-titre {
+        font-size: 6px;
+        text-align: center;
+        font-weight: bold
+    }
+
+    .entete-sous-titre {
+        font-size: 8px;
+        text-align: center;
+    } 
 </style>
 
 <body>
 
-    <div style="margin-top:10rem">
-        <img src="{{ asset('storage/pictures/8Ipey07HhaWh1vTqjbmuNABC7y82Wi4yBZ9b1qCp.jpg') }}" alt="En-tête"
-            style="text-align: center" />
-    </div>
+        <table class="table-responsive" style="width: 100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="{{ storage_path('app/public/pictures/en-tete-univ.png') }}" alt=""
+                        style="width: 100%; height: 10rem">
+                    </td>
+                </tr>
+                {{-- <tr>
+                    <td rowspan="14">
+                        <img src="{{ storage_path('app/public/pictures/Logo_de_Université_de_Douala.jpg') }}" alt=""
+                            width="60" height="60">
+                    </td>
+                    <td class="entete-titre">REPUBLIQUE DU CAMEROUN</td>
+                    <td class="entete-titre bg-primary">REPUBLIC OF CAMEROON</td>
+                    <td rowspan="14">
+                        <img src="{{ storage_path('app/public/pictures/Logo_polytech.jpg') }}" alt=""
+                            width="60" height="60">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">Paix-Travail-Patrie</td>
+                    <td class="entete-sous-titre">Peace-Work-Fatherland</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">**********</td>
+                    <td class="entete-sous-titre">**********</td>
+                </tr>
+                <tr>
+                    <td class="entete-titre">UNIVERSITE DE DOUALA</td>
+                    <td class="entete-titre">THE UNIVERSITY OF DOUALA</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">**********</td>
+                    <td class="entete-sous-titre">**********</td>
+                </tr>
+                <tr>
+                    <td class="entete-titre">ECOLE NATIONALE SUPERIEURE POLYTECHNIQUE<br>DE DOUALA</br></td>
+                    <td class="entete-titre">NATIONAL HIGHER POLYTECHNIC SCHOOL OF <br> DOUALA</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">**********</td>
+                    <td class="entete-sous-titre">**********</td>
+                </tr>
+                <tr>
+                    <td class="entete-titre">DIVISION DES AFFAIRES ACADEMIQUES DE LA <br> RECHERCHE ET DE LA
+                        COOPERATION</td>
+                    <td class="entete-titre">DIVISION OF ACADEMIC AFFAIRS, RESEARCH AND <br>COOPERATION</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">**********</td>
+                    <td class="entete-sous-titre">**********</td>
+                </tr>
+
+                <tr>
+                    <td class="entete-titre">SERVICE DU PERSONNEL ENSEIGNANT ET DES <br> ACTIVITES ACADEMIQUES</td>
+                    <td class="entete-titre">SERVICE FOR TEACHING STAFF AND ACADEMIC <br> ACTIVITIES</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">**********</td>
+                    <td class="entete-sous-titre">**********</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">B.P. 2701 Douala</td>
+                    <td class="entete-sous-titre">P.O. 2701 Douala</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">Tél (237) 697 542 240</td>
+                    <td class="entete-sous-titre">Phone (237) 697 542 240</td>
+                </tr>
+                <tr>
+                    <td class="entete-sous-titre">Site web : www.enspd-udo.cm</td>
+                    <td class="entete-sous-titre">Email : contact@enspd-udo.cm</td>
+                </tr> --}}
+            </tbody>
+        </table>
     <h5 style="text-align: center">FICHE DE NOTATION ET DE SOUTENANCE DU MEMOIRE</h5>
 
     <div>
         <table style="width: 100%">
             <tbody>
                 <tr>
-                    <td class="en-tete">Date : {{$etudiant->date}} </td>
-                    <td class="en-tete">Heure : {{$etudiant->heure}}</td>
-                    <td class="en-tete">Salle : {{$etudiant->salle}}</td>
-                    <td class="en-tete">Matricule : {{$etudiant->matricule_etud}}</td>
+                    <td class="en-tete"><span style="font-weight: bold">Date : </span>{{ $etudiant->date }} </td>
+                    <td class="en-tete"><span style="font-weight: bold">Heure : </span>{{ $etudiant->heure }}</td>
+                    <td class="en-tete"><span style="font-weight: bold">Salle : </span>{{ $etudiant->salle }}</td>
+                    <td class="en-tete"><span style="font-weight: bold">Matricule : </span>{{ $etudiant->matricule_etud }}</td>
                 </tr>
             </tbody>
         </table>
@@ -41,7 +124,7 @@
         <table style="width: 100%">
             <tbody>
                 <tr>
-                    <td class="en-tete">Nom(s) et prénom(s) de l'étudiant : {{$etudiant->nom_prenom}}</td>
+                    <td class="en-tete"><span style="font-weight: bold">Nom(s) et prénom(s) de l'étudiant : </span>{{ $etudiant->nom_prenom }}</td>
                 </tr>
             </tbody>
         </table>
@@ -53,12 +136,12 @@
         <table style="width: 70%">
             <tbody>
                 <tr>
-                    <td class="en-tete text-nowrap">Département : </td>
-                    <td class="en-tete text-nowrap" style="text-align: left">Parcours : </td>
+                    <td class="en-tete text-nowrap"><span style="font-weight: bold">Département : </span></td>
+                    <td class="en-tete text-nowrap" style="text-align: left"><span style="font-weight: bold">Parcours : </span></td>
                 </tr>
                 <tr>
-                    <td class="en-tete text-nowrap">Lieu de stage : {{$etudiant->lieu_stage}}</td>
-                    <td class="en-tete text-nowrap">Entreprise : {{$etudiant->entreprise}}</td>
+                    <td class="en-tete text-nowrap"><span style="font-weight: bold">Lieu de stage : </span>{{ $etudiant->lieu_stage }}</td>
+                    <td class="en-tete text-nowrap"><span style="font-weight: bold">Entreprise : </span>{{ $etudiant->entreprise }}</td>
                 </tr>
             </tbody>
         </table>
@@ -67,14 +150,16 @@
         <table style="width: 100%">
             <tbody>
                 <tr>
-                    <td class="en-tete">Sujet : {{$etudiant->theme}}</td>
+                    <td class="en-tete"><span style="font-weight: bold">Sujet : </span>{{ $etudiant->theme }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <div>
-        <div style="text-decoration: underline; text-align : center; margin : 1rem 0 0.5rem">NOTATION DE LA SOUTENANCE
+        <div
+            style="text-decoration: underline; text-align : center; margin : 1rem 0 0.5rem; font-size : 0.7rem; font-weight : bold">
+            NOTATION DE LA SOUTENANCE
         </div>
     </div>
     <div>
@@ -85,8 +170,9 @@
                 <td class="text-body">Exposé : Qualité d'expression et de communication</td>
                 <td class="text-body" style="width: 10%; text-align:right">/10</td>
             </tr>
-            <td class="text-nowrap w-90 text-body">Exposé : Qualité de la présentation orale</td>
-            <td class="text-body" style="width: 10%; text-align:right">/10</td>
+            <tr>
+                <td class="text-nowrap w-90 text-body">Exposé : Qualité de la présentation orale</td>
+                <td class="text-body" style="width: 10%; text-align:right">/10</td>
             </tr>
             <tr>
                 <td class="text-body">Personnalité du candidat</td>
@@ -99,7 +185,8 @@
                 <td class="text-body" style="width: 10%; text-align:right">/10</td>
             </tr>
             <tr>
-                <td class="text-nowrap w-90 text-body">Compréhension et métrise technique du sujet, capacité à répondre aux
+                <td class="text-nowrap w-90 text-body">Compréhension et métrise technique du sujet, capacité à répondre
+                    aux
                     questions
                 </td>
                 <td class="text-body" style="width: 10%; text-align:right">/30</td>
@@ -124,7 +211,7 @@
     </div>
     <div>
         <div class="d-flex align-items-center justify-content-around">
-            <div class="text-nowrap text-body" style="margin: 1rem 0 1rem">Remarques sur la soutenance : </div>
+            <div class="text-nowrap text-body" style="margin: 1rem 0 1rem; font-weight : bold">Remarques sur la soutenance : </div>
             <hr class="w-100">
         </div>
         <div>
@@ -133,7 +220,9 @@
     </div>
 
     <div>
-        <div style="text-decoration: underline; text-align : center; margin-bottom: 1rem ">NOTATION DU MEMOIRE</div>
+        <div
+            style="text-decoration: underline; text-align : center; margin-bottom: 0.5rem; font-size: 0.7rem; font-weight : bold">
+            NOTATION DU MEMOIRE</div>
         <div class="text-nowrap text-body">
             <span style="text-decoration: underline; font-weight:bold">NB</span>
             <i style="font-weight: bold">Les encadreurs écoles et industriels ne
@@ -158,32 +247,32 @@
                         <span>- Rédaction proprement dite comprenant : accentuation, ponctuation<br>orthographe
                             grammaticale, orthographe d'usage, vocabulaire, syntaxe et plan</span>
                     </td>
-                    <td style="width: 10%; text-align:right"  class="text-body">/20</td>
+                    <td style="width: 10%; text-align:right" class="text-body">/20</td>
                 </tr>
                 <tr>
                     <td class="text-body">FOND </td>
-                    <td  class="text-body">
+                    <td class="text-body">
                         <span>- Problématique, Méthode scientifiques utilisées<br>
                             - Plan suivi, Exploitation des résultats, Efficacité de la solution</span>
                     </td>
-                    <td style="width: 10%; text-align:right"  class="text-body">/30</td>
+                    <td style="width: 10%; text-align:right" class="text-body">/30</td>
                 </tr>
                 <tr>
                     <td class="text-body">TOTAL</td>
                     <td></td>
-                    <td style="width: 10%; text-align:right"  class="text-body">/50</td>
+                    <td style="width: 10%; text-align:right" class="text-body">/50</td>
                 </tr>
                 <tr>
                     <td class="text-nowrap text-body">MOYENNE</td>
                     <td></td>
-                    <td style="width: 10%; text-align:right"  class="text-body">/50</td>
+                    <td style="width: 10%; text-align:right" class="text-body">/50</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <div>
-        <div style="text-decoration: underline; text-align : center; margin : 0.5rem 0 .5rem 0">Membres du Jury :</div>
+        <div style="text-decoration: underline; text-align : center; margin : 0.5rem 0 .5rem 0; font-size : 0.8rem; font-weight : bold">Membres du Jury :</div>
     </div>
 
     <div>
@@ -192,18 +281,18 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th  class="text-body">Président</th>
-                    <th  class="text-body">Examinateur</th>
-                    <th  class="text-body">Rapporteur</th>
-                    <th  class="text-body">Encadreur/<br>Entreprise</th>
+                    <th class="text-body">Président</th>
+                    <th class="text-body">Examinateur</th>
+                    <th class="text-body">Rapporteur</th>
+                    <th class="text-body">Encadreur/<br>Entreprise</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td style="font-size: 0.7rem">NOM</td>
-                    <td class="text-body" style="text-align: center">{{$etudiant->president}}</td>
-                    <td class="text-body" style="text-align: center">{{$etudiant->examinateur}}</td>
-                    <td class="text-body" style="text-align: center">{{$etudiant->rapporteur}}</td>
+                    <td class="text-body" style="text-align: center">{{ $etudiant->president }}</td>
+                    <td class="text-body" style="text-align: center">{{ $etudiant->examinateur }}</td>
+                    <td class="text-body" style="text-align: center">{{ $etudiant->rapporteur }}</td>
                     <td></td>
                 </tr>
                 <tr>
@@ -218,7 +307,7 @@
     </div>
     <div>
         <div class="d-flex align-items-center justify-content-around">
-            <p class="text-nowrap text-body">Remarques sur le mémoire : </p>
+            <p class="text-nowrap text-body" style="font-weight : bold">Remarques sur le mémoire : </p>
             <hr class="w-100">
         </div>
         <div>

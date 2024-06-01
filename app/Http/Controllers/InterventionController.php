@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BilanTotal;
 use App\Exports\DecompteExport;
 use App\Models\Departement;
 use App\Models\Enseignant;
@@ -34,8 +35,10 @@ class InterventionController extends Controller {
     }
 
     public function bilanInterventionTraitement(Request $request) {
-        $departement = $request->departement;
+        $departement = Departement::where("nom_depart", $request->departement)->first();
+
         $departements = Departement::all();
+
         $interventions = Intervention::selectRaw( 'GROUP_CONCAT(grade) as grade, nom_prenom_ens' )
         ->selectRaw( 'SUM(effec_pr) as sum_effec_pr, SUM(effec_ra) as sum_effec_ra, SUM(effec_ex) as sum_effec_ex' )
         ->where( 'departement', $request->departement )
@@ -87,7 +90,9 @@ class InterventionController extends Controller {
                 'prevu_ex' => $request->prevu_ex,
             ] );
 
-            return redirect( 'update/decompte_prevu' );
+            $intervention_prevu = Intervention::where("departement", $request->departement)->get();
+
+            return view( "Interventions.Departement.updateIntervention", compact("intervention_prevu") );
         } else {
             return [
                 'message' => 'invalid !'
@@ -140,7 +145,6 @@ class InterventionController extends Controller {
     public function store( Request $request ) {
         $validated = $request->validate( [
             'departement' => [ 'required', 'string' ],
-            // 'grade' => [ 'required', 'string' ],
             'nom_prenom_ens' => [ 'required', 'string' ],
             'date' => [ 'required', 'date' ],
             'prevu_pr' => [ 'required', 'integer' ],
@@ -152,11 +156,18 @@ class InterventionController extends Controller {
             try {
                 $EnseignantDateExist = Intervention:: where( 'date', $request->date )
                 ->where( 'nom_prenom_ens', $request->nom_prenom_ens )->exists();
-
+// dd([
+//                         'departement' => $request->departement,
+//                             // 'grade' => $request->grade,
+//                             'nom_prenom_ens' => $request->nom_prenom_ens,
+//                             'date' => $request->date,
+//                             'prevu_pr' => $request->prevu_pr,
+//                             'prevu_ra' => $request->prevu_ra,
+//                             'prevu_ex' => $request->prevu_ex
+//                     ]);
                 if ( !$EnseignantDateExist ) {
                     Intervention::create( [
                         'departement' => $request->departement,
-                        // 'grade' => $request->grade,
                         'nom_prenom_ens' => $request->nom_prenom_ens,
                         'date' => $request->date,
                         'prevu_pr' => $request->prevu_pr,
@@ -243,6 +254,9 @@ class InterventionController extends Controller {
 
     public function fileExport(){
         return Excel::download(new DecompteExport, request()->departement.'.xlsx');
+    }
+    public function BilanTotalExport(){
+        return Excel::download(new BilanTotal, 'EtatService.xlsx');
     }
 
     public function choixDepartement(){

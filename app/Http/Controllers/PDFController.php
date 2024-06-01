@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Models\Jury;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 
 class PDFController extends Controller {
@@ -18,9 +19,9 @@ class PDFController extends Controller {
         ->first();
 
         // dd( $etudiant->heure );
-
         $data = [ 'etudiant' => $etudiant ];
         $pdf = PDF::loadView( 'pdf.document', $data );
+
         return $pdf->download( 'document.pdf' );
     }
 }

@@ -12,7 +12,7 @@
 
             <form action="{{route("departement.bilan_intervention")}}" method="post">
                 @csrf
-                <h4 class="m-5">CHOISIR VOTRE DEPARTEMENT</h4>
+                <h4 class="m-5">BILAN : CHOISIR VOTRE DEPARTEMENT</h4>
                 <div class="d-flex form-inline m-2">
                     <select class="mx-2" name="departement" id="">
                         @foreach ($departements as $departement)

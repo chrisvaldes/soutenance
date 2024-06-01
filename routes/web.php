@@ -63,6 +63,8 @@ Route::post('departement/bilan', [InterventionController::class, "bilanTraitemen
 // exportation du fichier en csv
 Route::post('file-export', [InterventionController::class, "fileExport"])->name("file.export");
 
+Route::post('BilanTotal-export', [InterventionController::class, "BilanTotalExport"])->name("BilanTotal.export");
+
 Route::post('/file-import', [JuryController::class, "fileImport"])->name("file.import");
 
 Route::post('import', [JuryController::class, "Import"])->name("file.import");
@@ -76,9 +78,15 @@ Route::get('importer/jury', [JuryController::class, 'importerJury'])->name("impo
 
 Route::post('/generate-pdf/{matricule_etud}', [PDFController::class, 'generatePDF'])->name("generate.pdf");
 
+// générer liste la liste des jurys
+
+// Route::post('/generate-listeJury-pdf}', [PDFController::class, 'generatePDF'])->name("generate.pdf");
+
 Route::get("/fiche-notation", function(){
     return view("FicheAnnotation.FicheAnnotation");
 });
 
 // select nom_prenom_ens, departement, sum(prevu_pr), sum(prevu_ra), sum(prevu_ex), sum(effec_pr), sum(effec_ra), sum(effec_ex) from interventions WHERE departement = "genie logiciel" GROUP BY nom_prenom_ens;
 // select nom_prenom_ens, departement, sum(effec_pr), sum(effec_ra), sum(effec_ex) from interventions WHERE departement = "genie logiciel"  GROUP BY nom_prenom_ens ORDER by nom_prenom_ens;
+
+Route::get("Jury/creer-jury", [JuryController::class, "creer_jury"])->name("creer.jury");
